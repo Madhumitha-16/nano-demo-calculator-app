@@ -21,39 +21,43 @@ id:2,
 }]
 
 baseRouter.get('/greeting', (req, res) => {
-    return res.json.stringify(students);
+    return res.json.stringify("Hello world!");
 });
-baseRouter.get('/greeting/:id', (req, res) => {
-    let id = parseInt(req.params.id);
-    let curstudent = students.filter(student => student.id === id)[0];
-    console.log(curstudent);
-    if(curstudent)
-        return res.json(curstudent);
-    else
-        return res.sendStatus(404);
-    });
+// baseRouter.get('/greeting/:id', (req, res) => {
+//     let id = parseInt(req.params.id);
+//     let curstudent = students.filter(student => student.id === id)[0];
+//     console.log(curstudent);
+//     if(curstudent)
+//         return res.json(curstudent);
+//     else
+//         return res.sendStatus(404);
+//     });
 
-ValidateStudent = (student) =>{
-    let msg="";
-    if(student.id==""){
-        msg = "err";
-    }
-    if(student.name==""){
-        msg="err";
-    }
-    return msg;
-}
+// ValidateStudent = (student) =>{
+//     let msg="";
+//     if(student.id==""){
+//         msg = "err";
+//     }
+//     if(student.name==""){
+//         msg="err";
+//     }
+//     return msg;
+// }
 baseRouter.post('/add', (req, res) => {
-    let student = req.body;
-    let isValid = ValidateStudent(student);
-    if(isValid == "")
-    {
-        students.push(student);
-        console.log(students);
-        res.status(200).send(students);
-    }
-    else
-    return res.sendStatus(404);
+    // let student = req.body;
+    // let isValid = ValidateStudent(student);
+    // if(isValid == "")
+    // {
+    //     students.push(student);
+    //     console.log(students);
+    //     res.status(200).send(students);
+    // }
+    // else
+    // return res.sendStatus(404);
+    let f= req.body.first;
+    let s= req.body.second;
+    res.json({"result":f+s});
+    
 });
 baseRouter.put('/update/:id', (req, res) => {
     let studentid = req.params.id;
